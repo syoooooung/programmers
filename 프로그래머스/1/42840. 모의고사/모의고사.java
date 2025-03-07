@@ -1,50 +1,33 @@
 class Solution {
     public int[] solution(int[] answers) {
-        
-        int[] A1 = {1,2,3,4,5}; //5개
-        int[] A2 = {2,1,2,3,2,4,2,5}; //8개
-        int[] A3 =  {3,3,1,1,2,2,4,4,5,5}; //10개
-        int hit1=0, hit2=0, hit3=0;
+        int[][] pattern={
+            {1,2,3,4,5},
+            {2,1,2,3,2,4,2,5},
+            {3,3,1,1,2,2,4,4,5,5}
+        };
+        int [] hit = new int[3];
         for(int i=0; i<answers.length; i++){
-            if(A1[i%5]==answers[i]){
-                hit1++;
-            }
-            if(A2[i%8]==answers[i]){
-                hit2++;
-            }
-            if(A3[i%10]==answers[i]){
-                hit3++;
+            for(int j=0; j<pattern.length; j++){
+                if(pattern[j][i%pattern[j].length] == answers[i]){
+                    hit[j]++;
+                }
             }
         }
-        int max=0;
+        int max = Math.max(hit[0], Math.max(hit[1], hit[2]));
         int idx=0;
-        int[] answer = new int[3];
-        if(hit1>=hit2 && hit1>=hit3){
-            max=hit1;
+        for(int i=0; i<3; i++){
+            if(hit[i]==max){
+                idx++;
+            }
         }
-        else if(hit2>=hit3 && hit2 >=hit1){
-            max=hit2;
+        int[] answer=new int[idx];
+        idx=0;
+        for(int i=0; i<3; i++){
+            if(hit[i]==max){
+                answer[idx]=i+1;
+                idx++;
+            }
         }
-        else{
-            max=hit3;
-        }
-        if(hit1 ==max){
-            answer[idx]=1;
-            idx++;
-        }
-        if(hit2==max){
-            answer[idx]=2;
-            idx++;
-        }
-        if(hit3==max){
-            answer[idx]=3;
-            idx++;
-        }
-        int r[]=new int[idx];
-        for(int i=0; i<idx; i++){
-            r[i]=answer[i];
-        }
-        
-        return r;
+        return answer;
     }
 }
