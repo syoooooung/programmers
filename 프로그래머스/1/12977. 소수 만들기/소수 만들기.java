@@ -12,7 +12,8 @@ class Solution {
                 odd.add(nums[i]);
             }
         }
-        
+        //소수가 되기 위해선 세 수를 더한 값이 홀수 여야 함
+        //따라서 홀+홀+홀 OR 홀+짝+짝 의 경우의 수만 다루기
         for(int i=0; i<odd.size()-2; i++){
             for(int j=i+1; j<odd.size()-1; j++){
                 for(int k=j+1; k<odd.size(); k++){
