@@ -1,0 +1,8 @@
+-- 점수(상,하반기 점수합), 사번, 성명, 직책, 이메일 출력
+SELECT SUM(g.SCORE) as SCORE
+, h.EMP_NO, h.EMP_NAME, h.POSITION, h.EMAIL
+FROM HR_EMPLOYEES h
+JOIN HR_GRADE g
+ON g.EMP_NO  = h.EMP_NO
+GROUP BY h.EMP_NO
+ORDER BY SCORE DESC LIMIT 1;
