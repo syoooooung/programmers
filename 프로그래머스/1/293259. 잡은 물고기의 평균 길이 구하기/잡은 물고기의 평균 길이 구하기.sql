@@ -1,0 +1,7 @@
+-- 코드를 작성해주세요
+SELECT ROUND(SUM(
+    CASE WHEN LENGTH>10 THEN LENGTH
+         ELSE 10
+    END
+) / count(*) ,2) as AVERAGE_LENGTH
+FROM FISH_INFO
