@@ -1,0 +1,9 @@
+-- 보호시작일보다 입양일이 더 빠른
+-- 동물의 ID, 이름
+-- 보호시작일이 빠른 순
+SELECT i.ANIMAL_ID, i.NAME
+FROM ANIMAL_INS i
+JOIN ANIMAL_OUTS o
+ON i.ANIMAL_ID= o.ANIMAL_ID
+WHERE o.DATETIME < i.DATETIME
+ORDER BY i.DATETIME
