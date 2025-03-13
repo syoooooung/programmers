@@ -1,0 +1,9 @@
+-- 부서별
+-- 부서ID, 영문 부서명, 평균 연봉
+-- 평균연봉 소수첫째자리에서 반올림
+SELECT d.DEPT_ID, d.DEPT_NAME_EN, ROUND(AVG(e.SAL),0) as AVG_SAL
+FROM HR_DEPARTMENT d
+JOIN HR_EMPLOYEES e
+ON e.DEPT_ID = d.DEPT_ID
+GROUP BY d.DEPT_ID
+ORDER BY AVG_SAL DESC
