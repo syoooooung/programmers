@@ -1,0 +1,11 @@
+-- 공간을 둘 이상 등록
+-- 
+SELECT *
+FROM PLACES
+WHERE HOST_ID in (
+    SELECT p.HOST_ID
+    FROM PLACES p
+    GROUP BY p.HOST_ID
+    HAVING COUNT(*)>=2
+)
+ORDER BY ID
