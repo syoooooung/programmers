@@ -1,0 +1,11 @@
+-- 더이상 업그레이드 불가능한 (나를 parent로 두지 않는 것)
+-- item ID, NAME, RARITY 출력
+SELECT i.ITEM_ID, i.ITEM_NAME, i.RARITY
+FROM ITEM_INFO i
+WHERE NOT EXISTS
+(
+    SELECT PARENT_ITEM_ID
+    FROM ITEM_TREE
+    WHERE PARENT_ITEM_ID = i.ITEM_ID
+)
+ORDER BY i.ITEM_ID DESC
