@@ -1,0 +1,11 @@
+-- 우유와 요거트 동시에 구입한 장바구니
+-- 아이디 출력
+SELECT DISTINCT(c1.CART_ID) as CART_ID
+FROM CART_PRODUCTS c1
+WHERE 'Yogurt' in(
+    SELECT c2.NAME
+    FROM CART_PRODUCTS c2
+    WHERE c1.CART_ID = c2.CART_ID
+) and c1.NAME = 'Milk'
+GROUP BY CART_ID
+ORDER BY CART_ID
