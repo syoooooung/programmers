@@ -4,10 +4,9 @@ class Solution {
         if(arr.length==1)
             return new int[]{-1};
         int[] answer = new int[arr.length-1];
-        PriorityQueue<Integer>q = new PriorityQueue<>();
-        for(int i:arr)
-            q.offer(i);
-        int min = q.poll();
+        int min=Integer.MAX_VALUE;
+        for(int i: arr)
+            min = Math.min(min,i);
         int idx=0;
         for(int i=0; i<arr.length-1 ; i++){
             if(arr[idx]==min){
