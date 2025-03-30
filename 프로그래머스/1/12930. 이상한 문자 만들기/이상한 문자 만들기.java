@@ -1,12 +1,11 @@
 class Solution {
     public String solution(String s) {
-        s=s.toUpperCase();
-        String answer = "";
+        String answer="";
         int idx=0;
-        for(int i=0; i<s.length(); i++){
-            char c=s.charAt(i);
-            answer+= idx%2==0? c:Character.toLowerCase(c);
-            idx = c!=' '?idx+1:0;
+        String[] str = s.split("");
+        for(String ss:str){
+            answer+= idx%2==0? ss.toUpperCase():ss.toLowerCase();
+            idx = ss.equals(" ")? 0:idx+1;
         }
         return answer;
     }
