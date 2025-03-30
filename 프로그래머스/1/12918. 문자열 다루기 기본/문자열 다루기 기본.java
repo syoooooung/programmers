@@ -1,13 +1,14 @@
 import java.util.*;
 class Solution {
     public boolean solution(String s) {
-        if(s.length()!=4 && s.length()!=6)
-            return false;
-        for(char c : s.toCharArray()){
-            if(c<'0' || c>'9' ){
+        if(s.length()==4 || s.length()==6){
+            try{
+                int x = Integer.parseInt(s);
+                return true;
+            }catch(NumberFormatException e){
                 return false;
             }
         }
-        return true;
+        return false;
     }
 }
