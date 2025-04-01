@@ -1,29 +1,21 @@
 import java.util.*;
 class Solution {
     public int[] solution(int[] progresses, int[] speeds) {
-        int pre=0, cnt=0;
-        Queue<Integer> q = new LinkedList<>();
-        for(int i=0; i<progresses.length ; i++){
-            cnt++;
-            int multi = (100-progresses[i])/speeds[i];
-            multi += (100-progresses[i])%speeds[i]==0? 0:1;
-            if(i==0){
-                pre=multi;
+        List <Integer> list = new ArrayList<>();
+        int time= (100-progresses[0])/speeds[0];
+        time += (100-progresses[0])%speeds[0] != 0 ? 1:0;
+        int num=1;
+        for(int i=1; i<progresses.length ; i++){
+            if(progresses[i]+ speeds[i]*time >=100){
+                num++;
+            }else{
+                list.add(num);
+                time=(100-progresses[i])/speeds[i];
+                time += (100-progresses[i])%speeds[i] != 0 ? 1:0;
+                num=1;
             }
-            else if(pre< multi){ //나 아직 못 끝냈어
-                q.add(cnt-1);
-                cnt=1;
-                pre=multi;
-            }
-            if(i==progresses.length-1){
-                q.add(cnt);
-            }
-        }
-        int[] answer = new int[q.size()];
-        for(int i=0; i<answer.length; i++){
-            answer[i]=q.peek();
-            q.poll();
-        }
-        return answer;
+        }list.add(num);
+        int []ans = list.stream().mapToInt(Integer::intValue).toArray();
+        return ans;
     }
 }
