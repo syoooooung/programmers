@@ -1,24 +1,25 @@
 import java.util.*;
 class Solution {
     public int solution(String[] want, int[] number, String[] discount) {
-        int answer = 0;
-        HashMap<String, Integer> map = new HashMap<>();
-        for(int i=0; i<want.length ; i++){
-            map.put(want[i],number[i]);
+        HashMap<String, Integer> saveMap = new HashMap<>();
+        int totalCnt=0, answer=0;
+        for(int i=0 ; i<want.length ; i++){ //초기화
+            saveMap.put(want[i], number[i]);
+            totalCnt+=number[i];
         }
-        for(int i=0 ; i<=discount.length-10;i++){
-            HashMap<String, Integer> tmp = new HashMap<>(map);
-            boolean breakF = false;
-            for(int j=i; j<i+10; j++){
-                if(!tmp.containsKey(discount[j]) || tmp.get(discount[j]) -1 <0){
-                    breakF=true;
+        for(int i=0; i<=discount.length-totalCnt; i++){
+            HashMap<String, Integer> map = new HashMap<>(saveMap);
+            for(int j=i ; j< discount.length && !map.isEmpty() ; j++){
+                if(!map.containsKey(discount[j])){
                     break;
                 }
-                tmp.put(discount[j], tmp.get(discount[j])-1);
+                map.put(discount[j],map.get(discount[j])-1);
+                if(map.get(discount[j])==0){
+                    map.remove(discount[j]);
+                }
             }
-            if(!breakF){
+            if(map.isEmpty())
                 answer++;
-            }
         }
         return answer;
     }
