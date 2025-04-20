@@ -18,6 +18,8 @@
 
 예를 들면, 12표를 받은 후보의 경우 칠판에는 ++++ ++++ ||가 적히게 된다.
 
+![image](https://github.com/user-attachments/assets/41e161bd-5ee9-4898-8d65-ba7158cf808f)
+
 <br>
 
 ## 제약조건
